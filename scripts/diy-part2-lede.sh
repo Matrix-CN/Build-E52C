@@ -12,8 +12,14 @@
 # 修改 argon 为默认主题,可根据你喜欢的修改成其他的（不选择那些会自动改变为默认主题的主题才有效果）
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
-# Modify default IP
+# 默认地址
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/luci/bin/config_generate
+
+# 主机名
+sed -i 's/LEDE/E52C/g' package/base-files/files/bin/config_generate
+sed -i 's/LEDE/E52C/g' package/base-files/luci/bin/config_generate
+
 
 # Add build date to index page
 export orig_version="$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')"
